@@ -22,6 +22,6 @@ jobs:
 
     steps:
       - name: print hellow
-        run: echo "hello world !!"
+        run: cat /etc/os_release
 
         
