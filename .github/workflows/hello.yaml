@@ -5,10 +5,12 @@ on:
       -  master
 jobs:
   install-java:
-    runs-on: ubuntu-latest
-   
+   runs-on: ubuntu-latest
+    container:
+         image: alpine:latest
     steps:
       - name: install java
-        run: apk add --no-cache openjdk11-jdk
-      - name: print java -version
-        run: java --version
+        run: |
+        apk add --no-cache openjdk11-jdk
+        java --version
+      
