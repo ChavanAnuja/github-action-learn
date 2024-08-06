@@ -7,8 +7,6 @@ jobs:
   install-java:
     runs-on: ubuntu-latest
    
-    container:
-      image: alpine:latest
     steps:
       - name: install java
         run: apk add --no-cache openjdk11-jdk
