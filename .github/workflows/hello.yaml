@@ -11,15 +11,18 @@ env:
 jobs:
   install-java:
     runs-on: ubuntu-latest
+    container:
+      image: alpine:latest
     steps:
-      - name: Set up JDK version
-        run: echo "JAVA_VERSION=$JDK_VERSION" >> $GITHUB_ENV
+      - name: install java
+        run: |
+         apk add --no-cache $JDK_VERSION
+         java --version
+         echo "MAVEN_VERSION=1234" >>  $GITHUB_ENV
+         
+      - name: print maven version
+        run: echo $MAVEN_VERSION
 
-      - name: Set Maven version
-        run: echo "MAVEN_VERSION=3.6.3" >> $GITHUB_ENV
-
-      - name: Print JDK version
-        run: echo $JAVA_VERSION
 
   print-maven-version:
     runs-on: ubuntu-latest
@@ -30,6 +33,8 @@ jobs:
 
   print-env:
     runs-on: ubuntu-latest
+    container:
+      image: alpine:latest
     steps:
       - name: Print environment variable
         run: echo $JDK_VERSION
